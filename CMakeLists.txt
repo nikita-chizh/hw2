@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 3.2)
 MESSAGE(STATUS $ENV{TRAVIS_BUILD_NUMBER})
-project(hw2 VERSION 0.0.$ENV{TRAVIS_BUILD_NUMBER})
+project(ip_filter VERSION 0.0.$ENV{TRAVIS_BUILD_NUMBER})
 find_package(Boost COMPONENTS unit_test_framework REQUIRED)
 set(CMAKE_CXX_STANDARD 14)
 
