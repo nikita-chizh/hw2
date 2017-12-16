@@ -1,16 +1,13 @@
 cmake_minimum_required(VERSION 3.2)
-MESSAGE(STATUS $ENV{TRAVIS_BUILD_NUMBER})
-project(ip_filter VERSION 0.0.$ENV{TRAVIS_BUILD_NUMBER})
+project(ip_filter)
 find_package(Boost COMPONENTS unit_test_framework REQUIRED)
 set(CMAKE_CXX_STANDARD 14)
-
-configure_file(version.h.in ${CMAKE_CURRENT_SOURCE_DIR}/version.h)
 
 add_executable(ip_filter main.cpp)
 add_executable(test_version test.cpp)
 
 
-add_library(hw2 hw2.cpp hw.h)
+add_library(hw2 hw2.cpp hw2.h)
 
 set_target_properties(ip_filter hw2 test_version PROPERTIES
         CXX_STANDART 14

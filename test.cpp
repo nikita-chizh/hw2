@@ -2,14 +2,16 @@
 
 #include <spdlog/spdlog.h>
 #include <boost/test/unit_test.hpp>
-#include "hw.h"
+#include "hw2.h"
 
-using in_out = std::pair<std::string, std::vector<std::string>>;
+using in_out1 = std::pair<std::string, std::vector<std::string>>;
+using in_out2 = std::pair<std::string, bool>;
+
 
 BOOST_AUTO_TEST_SUITE(test_split)
 
     BOOST_AUTO_TEST_CASE(test_split_general) {
-        std::vector<in_out> cases = {
+        std::vector<in_out1> cases = {
                 {"",     {""}},
                 {"11",    {"11"}},
                 {"..",    {"",   "", ""}},
@@ -26,7 +28,7 @@ BOOST_AUTO_TEST_SUITE(test_split)
     }
 
     BOOST_AUTO_TEST_CASE(test_split_with_num) {
-        std::vector<in_out> cases = {
+        std::vector<in_out1> cases = {
                 {"11.22. sdbvsd", {"11"}},
                 {".11.22. sdbvsd", {""}},
                 {"123.11.22. sdbvsd", {"123"}}
@@ -38,3 +40,22 @@ BOOST_AUTO_TEST_SUITE(test_split)
 
 
 BOOST_AUTO_TEST_SUITE_END()
+
+BOOST_AUTO_TEST_SUITE(test_validate)
+
+    BOOST_AUTO_TEST_CASE(test_validate_general) {
+        std::vector<in_out2> cases = {
+                {"1.1.1.1",   true},
+                {"-1.1.1.1",   false},
+                {"255.255.255.", false},
+                {"255.255.255,255", false}
+        };
+        BOOST_CHECK(ip_validate(cases[0].first) == cases[0].second);
+        BOOST_CHECK(ip_validate(cases[1].first) == cases[1].second);
+        BOOST_CHECK(ip_validate(cases[2].first) == cases[2].second);
+        BOOST_CHECK(ip_validate(cases[3].first) == cases[3].second);
+
+    }
+
+BOOST_AUTO_TEST_SUITE_END()
+

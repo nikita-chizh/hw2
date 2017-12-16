@@ -1,9 +1,6 @@
-#include "hw.h"
-#include "version.h"
+#include "hw2.h"
+#include <boost/lexical_cast.hpp>
 
-int version(){
-    return PROJECT_VERSION_PATCH;
-}
 
 std::vector<std::string> split(const std::string &str, char d, unsigned int words){
     std::vector<std::string> r;
@@ -19,4 +16,18 @@ std::vector<std::string> split(const std::string &str, char d, unsigned int word
     }
     r.push_back(str.substr(start, stop - start));
     return r;
+}
+//
+bool ip_validate(const std::string &str){
+    std::vector<std::string> ip_tokens = split(str, '.', 4);
+    if(ip_tokens.size() != 4) return false;
+    for(auto& token: ip_tokens){
+        try {
+            auto byte = boost::lexical_cast<int>(token);
+            if(byte < 0 || byte > 255) return false;
+        } catch (boost::bad_lexical_cast& ex) {
+            return false;
+        }
+    }
+    return true;
 }
