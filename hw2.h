@@ -3,7 +3,6 @@
 #include <string>
 #include <vector>
 #include <sstream>
-#include <exception>
 
 std::vector<std::string> split(const std::string &str, char sign, unsigned int words);
 
