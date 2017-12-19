@@ -3,7 +3,6 @@
 //
 #pragma once
 
-#include <exception>
 #include "hw2.h"
 #include <ostream>
 class IP_Adress {
