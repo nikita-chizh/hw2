@@ -1,8 +1,6 @@
 #define BOOST_TEST_MODULE TestMain
 
-#include <spdlog/spdlog.h>
 #include <boost/test/unit_test.hpp>
-#include "hw2.h"
 #include "IP_Adress.h"
 using in_out1 = std::pair<std::string, std::vector<std::string>>;
 using in_out3 = std::pair<std::string, std::string>;

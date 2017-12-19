@@ -1,4 +1,3 @@
-#include "hw2.h"
 #include <iostream>
 #include <algorithm>
 #include <functional>
