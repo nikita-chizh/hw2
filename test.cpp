@@ -3,10 +3,9 @@
 #include <spdlog/spdlog.h>
 #include <boost/test/unit_test.hpp>
 #include "hw2.h"
-
+#include "IP_Adress.h"
 using in_out1 = std::pair<std::string, std::vector<std::string>>;
-using in_out2 = std::pair<std::string, bool>;
-
+using in_out3 = std::pair<std::string, std::string>;
 
 BOOST_AUTO_TEST_SUITE(test_split)
 
@@ -44,18 +43,27 @@ BOOST_AUTO_TEST_SUITE_END()
 BOOST_AUTO_TEST_SUITE(test_validate)
 
     BOOST_AUTO_TEST_CASE(test_validate_general) {
-        std::vector<in_out2> cases = {
-                {"1.1.1.1",   true},
-                {"-1.1.1.1",   false},
-                {"255.255.255.", false},
-                {"255.255.255,255", false}
+        std::vector<std::string> cases = {
+                "1.1.1.1",
+                "-1.1.1.1",
+                "255.255.255",
+                "255.255.255,255"
         };
-        BOOST_CHECK(ip_validate(cases[0].first) == cases[0].second);
-        BOOST_CHECK(ip_validate(cases[1].first) == cases[1].second);
-        BOOST_CHECK(ip_validate(cases[2].first) == cases[2].second);
-        BOOST_CHECK(ip_validate(cases[3].first) == cases[3].second);
-
+        BOOST_CHECK(ip_validate(cases[0]));
+        BOOST_CHECK(!ip_validate(cases[1]));
+        BOOST_CHECK(!ip_validate(cases[2]));
+        BOOST_CHECK(!ip_validate(cases[3]));
     }
-
 BOOST_AUTO_TEST_SUITE_END()
 
+BOOST_AUTO_TEST_SUITE(test_comparens)
+    BOOST_AUTO_TEST_CASE(test_ip_comparence) {
+        std::vector<in_out3> cases = {
+                {"1.1.1.1",   "1.1.1.1"},
+                {"1.2.1.1",   "1.10.1.1"},
+
+        };
+        BOOST_CHECK(!(IP_Adress(cases[0].first) < IP_Adress(cases[0].second)));
+        BOOST_CHECK(IP_Adress(cases[1].first) < IP_Adress(cases[1].second));
+    }
+BOOST_AUTO_TEST_SUITE_END()

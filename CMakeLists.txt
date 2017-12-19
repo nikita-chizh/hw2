@@ -7,7 +7,7 @@ add_executable(ip_filter main.cpp)
 add_executable(test_version test.cpp)
 
 
-add_library(hw2 hw2.cpp hw2.h)
+add_library(hw2 hw2.cpp hw2.h IP_Adress.cpp IP_Adress.h)
 
 set_target_properties(ip_filter hw2 test_version PROPERTIES
         CXX_STANDART 14

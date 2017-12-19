@@ -18,6 +18,23 @@ std::vector<std::string> split(const std::string &str, char d, unsigned int word
     return r;
 }
 //
+std::vector<unsigned> ip_split(const std::string &str){
+    std::vector<std::string> ip_tokens = split(str, '.', 4);
+    if(ip_tokens.size() != 4) throw std::runtime_error("invalid ip string");
+    std::vector<unsigned> result;
+    for(auto& token: ip_tokens){
+        try {
+            auto byte = boost::lexical_cast<int>(token);
+            if(byte < 0 || byte > 255) throw std::runtime_error("invalid ip string");
+            result.push_back(byte);
+        } catch (boost::bad_lexical_cast& ex) {
+            throw std::runtime_error("invalid ip string");
+        }
+    }
+    return result;
+}
+
+//
 bool ip_validate(const std::string &str){
     std::vector<std::string> ip_tokens = split(str, '.', 4);
     if(ip_tokens.size() != 4) return false;
