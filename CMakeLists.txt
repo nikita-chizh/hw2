@@ -31,6 +31,7 @@ target_link_libraries(test_version
 install(TARGETS ip_filter RUNTIME DESTINATION bin)
 
 set(CPACK_GENERATOR DEB)
+set( CPACK_PACKAGE_NAME ip_filter)
 set(CPACK_PACKAGE_CONTACT nikita1993chizh@gmail.com)
 include(CPack)
 enable_testing()
