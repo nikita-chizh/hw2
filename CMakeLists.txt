@@ -6,6 +6,10 @@ set(CMAKE_CXX_STANDARD 14)
 add_executable(ip_filter main.cpp)
 add_executable(test_version test.cpp)
 
+set(boost_inc /usr/local/Cellar/boost/1.65.1/include)
+set(boost_lib /usr/local/Cellar/boost/1.65.1/lib)
+INCLUDE_DIRECTORIES(${boost_inc})
+LINK_DIRECTORIES(${boost_lib})
 
 add_library(hw2 hw2.cpp hw2.h IP_Adress.cpp IP_Adress.h)
 
